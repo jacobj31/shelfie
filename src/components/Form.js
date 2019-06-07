@@ -25,14 +25,7 @@ export default class Form extends React.Component{
                 name : ''
             })
         }
-        componentDidUpdate (prevProps) {
-            console.log(prevProps.product)
-            this.setState({
-                current: this.props.product
-            })
-            
-            
-        }
+       
         createItem = () => {
         let {img, price, name} = this.state
         axios.post('api/item', {price:price, img:img, name:name}).then(res => {

@@ -16,5 +16,6 @@ massive(CONNECTION_STRING).then(db => {
 app.get('/api/inventory', CTRL.getInventory)
 app.post('/api/item', CTRL.createItem)
 app.delete('/api/item/:id', CTRL.deleteItem)
+app.put('/api/item/:id', CTRL.updateItem)
 
 app.listen (SERVER_PORT, () => console.log('listening on port', SERVER_PORT))

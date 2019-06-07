@@ -5,12 +5,12 @@ export default class Product extends React.Component{
         let {name, price, img, id} = this.props.product
         return(
         <div>
-            {id}
+            
             {name}
             {price}
             <img src = {img} alt = ''/>
         <button onClick={() => this.props.delete(id)}>Delete</button>
-        <button onClick= {() => this.props.onEdit(this.props.product)}></button>
+        <button onClick= {() => this.props.onEdit(this.props.product)}>Edit</button>
         </div>)
     }
 }

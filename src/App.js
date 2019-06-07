@@ -34,9 +34,10 @@ class App extends React.Component {
   return (
     <HashRouter>
     <div className="App">
-     <Dashboard view = {this.componentDidMount} onEdit = {this.onEdit} inventory = {this.state.list}/>
-     <Form view = {this.componentDidMount} product = {this.state.product} />
-     <Header/>
+    <Header/>
+    <Dashboard view = {this.componentDidMount} onEdit = {this.onEdit} inventory = {this.state.list}/>
+    <Form view = {this.componentDidMount} product = {this.state.product} />
+     
     </div>
     </HashRouter>
   )};
