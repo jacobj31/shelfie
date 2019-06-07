@@ -10,7 +10,7 @@ export default class Form extends React.Component{
             price : 0,
             name : '',
             editing: false,
-            current: null
+           
         }}
         handleChange = e => {
             let {value, name} = e.target
@@ -34,6 +34,18 @@ export default class Form extends React.Component{
             this.props.view()
             })
         }
+        updateProduct = () =>{
+            let {img, name, price, id} = this.props.product
+            this.setState({ 
+                img: img,
+                price: price,
+                name: name
+            })
+            axios.put(`/api/item/${id}`, {price:price, img:img, name:name}).then(res =>{
+                this.cancel()
+            })
+        }
+
     render(){
  
 
@@ -64,8 +76,8 @@ export default class Form extends React.Component{
             
             <button onClick = {this.cancel}>Cancel</button>
             
-            {this.state.editing?
-            <button>Save Changes</button>
+            {this.props.product?
+            <button onClick = {this.updateProduct}>Save Changes</button>
             :
             <button onClick = {this.createItem}>Add to Inventory</button>
             }

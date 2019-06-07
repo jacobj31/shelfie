@@ -17,7 +17,7 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount = () => {
       axios.get('/api/inventory').then(res => {
         this.setState({
           list: res.data
@@ -28,6 +28,7 @@ class App extends React.Component {
     this.setState({
       product: item
     })
+    
   }
 
   render(){
