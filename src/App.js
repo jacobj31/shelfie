@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios'
 import './App.css';
+import Dashboard from './components/Dashboard'
+import Form from './components/Form'
+import Header from './components/Header'
+import {HashRouter} from 'react-router-dom'
 
-function App() {
+
+class App extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      list : [],
+      product: null
+    }
+  }
+
+  componentDidMount () {
+      axios.get('/api/inventory').then(res => {
+        this.setState({
+          list: res.data
+        })
+      })
+  }
+  onEdit = item => {
+    this.setState({
+      product: item
+    })
+  }
+
+  render(){
   return (
+    <HashRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Dashboard view = {this.componentDidMount} onEdit = {this.onEdit} inventory = {this.state.list}/>
+     <Form view = {this.componentDidMount} product = {this.state.product} />
+     <Header/>
     </div>
-  );
+    </HashRouter>
+  )};
 }
 
 export default App;
